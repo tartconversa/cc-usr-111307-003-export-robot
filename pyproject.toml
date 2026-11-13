@@ -1,0 +1,6 @@
+[project]
+name = "export-robot"
+version = "0.1.0"
+description = "公共目录供方协议与演练数据"
+requires-python = ">=3.10"
+dependencies = []
