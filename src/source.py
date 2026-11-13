@@ -43,8 +43,9 @@ class Source:
                 return (401, {}, b'{}')
             jobs = self.state['jobs']
             if path == '/exports' and method == 'POST':
-                if headers.get('X-CSRF-Token') != self.state['sessions'][sid]:
+                if not self.state['sessions'][sid] or headers.get('X-CSRF-Token') != self.state['sessions'][sid]:
                     return (403, {}, b'{}')
+                self.state['sessions'][sid] = ''
                 form = json.loads(body)
                 ref = form['client_ref']
                 if ref in jobs and jobs[ref]['form'] != form:
